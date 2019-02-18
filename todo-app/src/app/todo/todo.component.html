@@ -1,0 +1,56 @@
+<div class="container">
+<div class="wrapper">
+<form #todo="ngForm" novalidate (ngSubmit)="onsubmit(todo.value)">
+<div class="row">
+<div class="col-sm-2">
+<select class="form-control" name="color" [(ngModel)]="color" required>
+  <option *ngFor="let todoArr of todoVal">{{todoArr.name}}</option>
+</select>
+</div> 
+<div class="col-sm-2">
+<input type="text" name="name" [(ngModel)]="name" required class="form-control" placeholder="Enter the name" />
+</div>
+<div class="col-sm-2">
+  <input type="email" name="email" [(ngModel)]="email" required class="form-control" placeholder="Enter the Email" />
+</div>
+<div class="col-sm-2">
+  <input type="text" name="number" [(ngModel)]="number" required class="form-control" placeholder="Enter the number" />
+</div>
+<div class="col-sm-2">
+  <input type="text" name="salery" [(ngModel)]="salery" required class="form-control" placeholder="Enter the salery" />
+</div>
+<div class="col-sm-2">
+<button class="btn btn-success" [disabled] ="!todo.valid">Add</button>
+</div>
+</div>
+</form>
+
+<div class="table-responsive">
+<table class="table table-bordered" style="margin-top: 50px;">
+  <tr>
+    <th>Type of Work</th>
+    <th>Name</th>
+    <th>Email ID</th>
+    <th>Number</th>
+    <th>Salery</th>
+    <th>Delete</th>
+  </tr>
+  
+  <tr *ngFor="let tableVal of listarray; let i = index;">
+    <td>{{tableVal.color}}</td>
+    <td>{{tableVal.name}}</td>
+    <td>{{tableVal.email}}</td>
+    <td>{{tableVal.number}}</td>
+    <td>{{tableVal.salery}}</td>     
+    <td><button (click)="delfun(i)" class="btn btn-danger">X</button>
+      <span [style.background]="todoVal.color" style="width:20px; height: 20px;"> 
+      </span>
+    </td>
+  </tr>
+  <tr *ngIf="len==0">
+    <td colspan="6" align="center">Record Not Found</td> 
+  </tr>
+</table>
+</div>
+</div>
+</div>
